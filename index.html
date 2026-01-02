@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>Watt Workz Moto</title>
+
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+
+  <!-- PayPal SDK -->
+  <script src="https://www.paypal.com/sdk/js?client-id=ASAyrFLqSKuiYBJ8cYg0OKjMBUllPxQyu3r5q_-tcn-g5gsVl8EK4gR0PRHYwpmPv6yYcDIJmEqkbgQr&currency=USD"></script>
 
   <style>
     body {
@@ -15,6 +19,7 @@
     }
 
     header {
+      background: #000;
       padding: 40px 20px;
       text-align: center;
       border-bottom: 1px solid #fff;
@@ -109,6 +114,7 @@
     .button {
       background: #fff;
       color: #000;
+      border: none;
     }
 
     .button:hover {
@@ -136,21 +142,14 @@
       font-size: 0.9em;
     }
 
-    .warranty-button {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      background: #fff;
-      color: #000;
-      padding: 12px 18px;
-      border-radius: 8px;
-      font-weight: bold;
-      text-decoration: none;
-      z-index: 1000;
-    }
-
-    .warranty-button:hover {
-      background: #ddd;
+    .checkout {
+      display: none;
+      max-width: 500px;
+      margin: 50px auto;
+      padding: 20px;
+      border: 1px solid #fff;
+      border-radius: 12px;
+      text-align: center;
     }
   </style>
 </head>
@@ -172,80 +171,95 @@
 <section class="products-grid">
 
   <div class="product">
-    <img src="https://via.placeholder.com/600x300?text=72V+Battery" alt="72V Lithium Battery">
+    <img src="https://via.placeholder.com/600x300?text=72V+Battery">
     <h2>72V Lithium Battery</h2>
     <p>High-capacity battery for e-moto builds.</p>
     <p class="price">$1199.99</p>
-    <a class="button" href="https://instagram.com/wattworkzmoto" target="_blank">DM on Instagram</a>
+
+    <button class="button" onclick="startCheckout('72V Lithium Battery',1199.99)">Buy</button>
     <span class="info-button" onclick="toggleInfo('info1')">Info</span>
+
     <div class="info-panel" id="info1">
       Fits most 72V builds • 50Ah • High-discharge lithium cells
     </div>
   </div>
 
   <div class="product">
-    <img src="https://via.placeholder.com/600x300?text=Motor+Controller" alt="Brushless Motor Controller">
+    <img src="https://via.placeholder.com/600x300?text=Motor+Controller">
     <h2>Brushless Motor Controller</h2>
     <p>Programmable high-efficiency controller.</p>
     <p class="price">$349.99</p>
-    <a class="button" href="https://instagram.com/wattworkzmoto" target="_blank">DM on Instagram</a>
+
+    <button class="button" onclick="startCheckout('Motor Controller',349.99)">Buy</button>
     <span class="info-button" onclick="toggleInfo('info2')">Info</span>
+
     <div class="info-panel" id="info2">
-      Up to 500A • Fully programmable • Multiple motor support
+      Up to 500A • Fully programmable • Multi-motor support
     </div>
   </div>
 
   <div class="product">
-    <img src="https://via.placeholder.com/600x300?text=Motor+Mount+Kit" alt="Motor Mount Kit">
-    <h2>Motor Mount Kit</h2>
-    <p>CNC aluminum motor mount system.</p>
-    <p class="price">$89.99</p>
-    <a class="button" href="https://instagram.com/wattworkzmoto" target="_blank">DM on Instagram</a>
-    <span class="info-button" onclick="toggleInfo('info3')">Info</span>
-    <div class="info-panel" id="info3">
-      Fits 50–72V motors • Precision machined • Lightweight
-    </div>
-  </div>
-
-  <div class="product">
-    <img src="https://via.placeholder.com/600x300?text=Throttle" alt="Throttle Controller">
-    <h2>Throttle Controller</h2>
-    <p>Smooth, responsive throttle control.</p>
-    <p class="price">$59.99</p>
-    <a class="button" href="https://instagram.com/wattworkzmoto" target="_blank">DM on Instagram</a>
-    <span class="info-button" onclick="toggleInfo('info4')">Info</span>
-    <div class="info-panel" id="info4">
-      Adjustable sensitivity • Plug-and-play compatibility
-    </div>
-  </div>
-
-  <div class="product">
-    <img src="https://via.placeholder.com/600x300?text=Battery+Charger" alt="Battery Charger">
+    <img src="https://via.placeholder.com/600x300?text=Battery+Charger">
     <h2>72V Battery Charger</h2>
     <p>Fast-charging lithium charger.</p>
     <p class="price">$129.99</p>
-    <a class="button" href="https://instagram.com/wattworkzmoto" target="_blank">DM on Instagram</a>
-    <span class="info-button" onclick="toggleInfo('info5')">Info</span>
-    <div class="info-panel" id="info5">
+
+    <button class="button" onclick="startCheckout('72V Battery Charger',129.99)">Buy</button>
+    <span class="info-button" onclick="toggleInfo('info3')">Info</span>
+
+    <div class="info-panel" id="info3">
       72V • 5A fast charge • Built-in protections
     </div>
   </div>
 
 </section>
 
-<a class="warranty-button" href="https://instagram.com/wattworkzmoto" target="_blank">
-  Warranty & Support
-</a>
+<div class="checkout" id="checkout">
+  <h2 id="checkoutTitle"></h2>
+  <p>Total: $<span id="checkoutPrice"></span></p>
+  <div id="paypal-button-container"></div>
+</div>
 
 <script>
+  let currentProduct = {};
+  let paypalRendered = false;
+
   function toggleInfo(id) {
     document.querySelectorAll('.info-panel').forEach(panel => {
       if (panel.id !== id) panel.style.display = 'none';
     });
 
     const target = document.getElementById(id);
-    target.style.display =
-      target.style.display === 'block' ? 'none' : 'block';
+    target.style.display = target.style.display === 'block' ? 'none' : 'block';
+  }
+
+  function startCheckout(name, price) {
+    currentProduct = { name, price };
+
+    document.getElementById('checkout').style.display = 'block';
+    document.getElementById('checkoutTitle').innerText = name;
+    document.getElementById('checkoutPrice').innerText = price.toFixed(2);
+
+    if (!paypalRendered) {
+      paypalRendered = true;
+      paypal.Buttons({
+        createOrder: function(data, actions) {
+          return actions.order.create({
+            purchase_units: [{
+              description: currentProduct.name,
+              amount: { value: currentProduct.price.toFixed(2) }
+            }]
+          });
+        },
+        onApprove: function(data, actions) {
+          return actions.order.capture().then(function(details) {
+            alert('Payment completed by ' + details.payer.name.given_name);
+          });
+        }
+      }).render('#paypal-button-container');
+    }
+
+    window.scrollTo(0, document.body.scrollHeight);
   }
 </script>
 
