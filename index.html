@@ -1,216 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Watt Workz Moto</title>
+<meta charset="UTF-8">
+<title>Watt Workz Moto</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
 
-  <!-- PayPal SDK -->
-  <script src="https://www.paypal.com/sdk/js?client-id=ASAyrFLqSKuiYBJ8cYg0OKjMBUllPxQyu3r5q_-tcn-g5gsVl8EK4gR0PRHYwpmPv6yYcDIJmEqkbgQr&currency=USD"></script>
+<!-- PayPal SDK -->
+<script src="https://www.paypal.com/sdk/js?client-id=ASAyrFLqSKuiYBJ8cYg0OKjMBUllPxQyu3r5q_-tcn-g5gsVl8EK4gR0PRHYwpmPv6yYcDIJmEqkbgQr&currency=USD"></script>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #000;
-      color: #fff;
-      min-height: 100vh;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #000;
+  color: #fff;
+}
 
-    header {
-      background: #000;
-      padding: 40px 20px;
-      text-align: center;
-      border-bottom: 1px solid #fff;
-    }
+header {
+  padding: 40px 20px;
+  text-align: center;
+  border-bottom: 1px solid #fff;
+}
 
-    header h1 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 3em;
-      margin: 0;
-      letter-spacing: 2px;
-    }
+header h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3em;
+}
 
-    header p {
-      color: #aaa;
-      font-size: 1.2em;
-      margin-top: 10px;
-    }
+header p {
+  color: #aaa;
+}
 
-    .hero {
-      text-align: center;
-      padding: 40px 20px;
-      border-bottom: 1px solid #fff;
-    }
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1300px;
+  margin: 50px auto;
+  padding: 0 20px;
+}
 
-    .hero h2 {
-      font-size: 2em;
-      margin-bottom: 10px;
-    }
+.product {
+  border: 1px solid #fff;
+  border-radius: 16px;
+  padding: 20px;
+  background: #000;
+}
 
-    .hero p {
-      max-width: 600px;
-      margin: auto;
-      color: #ccc;
-    }
+.product img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
 
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      max-width: 1200px;
-      margin: 50px auto;
-      padding: 0 20px;
-    }
+.price {
+  font-size: 1.4em;
+  margin: 12px 0;
+}
 
-    .product {
-      background: #000;
-      border: 1px solid #fff;
-      border-radius: 16px;
-      padding: 20px;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
+.button, .info-button {
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-right: 8px;
+}
 
-    .product:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 30px rgba(255,255,255,0.15);
-    }
+.button {
+  background: #fff;
+  color: #000;
+  border: none;
+}
 
-    .product img {
-      width: 100%;
-      border-radius: 12px;
-      margin-bottom: 15px;
-    }
+.info-button {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+}
 
-    .product h2 {
-      margin: 0;
-      font-size: 1.3em;
-    }
+.info-panel {
+  display: none;
+  margin-top: 15px;
+  padding: 12px;
+  background: #111;
+  border-radius: 8px;
+  font-size: 0.9em;
+  border: 1px solid #333;
+}
 
-    .product p {
-      color: #ccc;
-      font-size: 0.95em;
-    }
-
-    .price {
-      font-size: 1.4em;
-      margin: 15px 0;
-    }
-
-    .button,
-    .info-button {
-      display: inline-block;
-      padding: 10px 16px;
-      border-radius: 6px;
-      font-weight: bold;
-      text-decoration: none;
-      margin-right: 8px;
-      margin-top: 10px;
-      transition: 0.3s;
-      cursor: pointer;
-    }
-
-    .button {
-      background: #fff;
-      color: #000;
-      border: none;
-    }
-
-    .button:hover {
-      background: #ddd;
-    }
-
-    .info-button {
-      background: transparent;
-      color: #fff;
-      border: 1px solid #fff;
-    }
-
-    .info-button:hover {
-      background: #fff;
-      color: #000;
-    }
-
-    .info-panel {
-      display: none;
-      margin-top: 15px;
-      padding: 12px;
-      background: #111;
-      border-radius: 8px;
-      border: 1px solid #333;
-      font-size: 0.9em;
-    }
-
-    .checkout {
-      display: none;
-      max-width: 500px;
-      margin: 50px auto;
-      padding: 20px;
-      border: 1px solid #fff;
-      border-radius: 12px;
-      text-align: center;
-    }
-  </style>
+.checkout {
+  display: none;
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #fff;
+  border-radius: 12px;
+  text-align: center;
+}
+</style>
 </head>
 
 <body>
 
 <header>
   <h1>Watt Workz Moto</h1>
-  <p>Electric Motorcycle Parts & Upgrades</p>
+  <p>High-Performance Electric Moto Parts</p>
 </header>
-
-<section class="hero">
-  <h2>Electric Motorcycle Parts & Custom Builds</h2>
-  <p>
-    High-performance components for Sur-Ron, Talaria, and custom electric moto builds.
-  </p>
-</section>
 
 <section class="products-grid">
 
-  <div class="product">
-    <img src="https://via.placeholder.com/600x300?text=72V+Battery">
-    <h2>72V Lithium Battery</h2>
-    <p>High-capacity battery for e-moto builds.</p>
-    <p class="price">$1199.99</p>
-
-    <button class="button" onclick="startCheckout('72V Lithium Battery',1199.99)">Buy</button>
-    <span class="info-button" onclick="toggleInfo('info1')">Info</span>
-
-    <div class="info-panel" id="info1">
-      Fits most 72V builds • 50Ah • High-discharge lithium cells
-    </div>
+<!-- TRUMOTO 67 KIT -->
+<div class="product">
+  <img src="https://images.unsplash.com/photo-1605559424843-9c3b1efc9f9d">
+  <h2>TruMoto 67 Motor Kit</h2>
+  <p>High-torque performance motor upgrade.</p>
+  <p class="price">$2,499.99</p>
+  <button class="button" onclick="startCheckout('TruMoto 67 Motor Kit',2499.99)">Buy</button>
+  <span class="info-button" onclick="toggleInfo('info1')">Info</span>
+  <div class="info-panel" id="info1">
+    <strong>Specs:</strong><br>
+    • 67mm stator • High-temp windings<br>
+    • Peak power: 25–30kW (controller dependent)<br><br>
+    <strong>Compatibility:</strong><br>
+    ✔ Sur-Ron Light Bee X<br>
+    ✔ Talaria Sting / R MX4<br>
+    ✔ Custom e-moto builds (72V–84V)
   </div>
+</div>
 
-  <div class="product">
-    <img src="https://via.placeholder.com/600x300?text=Motor+Controller">
-    <h2>Brushless Motor Controller</h2>
-    <p>Programmable high-efficiency controller.</p>
-    <p class="price">$349.99</p>
-
-    <button class="button" onclick="startCheckout('Motor Controller',349.99)">Buy</button>
-    <span class="info-button" onclick="toggleInfo('info2')">Info</span>
-
-    <div class="info-panel" id="info2">
-      Up to 500A • Fully programmable • Multi-motor support
-    </div>
+<!-- 72V BATTERY -->
+<div class="product">
+  <img src="https://images.unsplash.com/photo-1581092334903-9c8c4c8b10f7">
+  <h2>72V 50Ah Lithium Battery</h2>
+  <p>High-discharge battery for performance builds.</p>
+  <p class="price">$1,699.99</p>
+  <button class="button" onclick="startCheckout('72V 50Ah Battery',1699.99)">Buy</button>
+  <span class="info-button" onclick="toggleInfo('info2')">Info</span>
+  <div class="info-panel" id="info2">
+    <strong>Specs:</strong><br>
+    • 72V nominal • 50Ah<br>
+    • 350A continuous / 500A peak<br><br>
+    <strong>Compatibility:</strong><br>
+    ✔ Sur-Ron Light Bee (aftermarket fitment)<br>
+    ✔ Talaria Sting<br>
+    ✔ TruMoto & BAC systems
   </div>
+</div>
 
-  <div class="product">
-    <img src="https://via.placeholder.com/600x300?text=Battery+Charger">
-    <h2>72V Battery Charger</h2>
-    <p>Fast-charging lithium charger.</p>
-    <p class="price">$129.99</p>
-
-    <button class="button" onclick="startCheckout('72V Battery Charger',129.99)">Buy</button>
-    <span class="info-button" onclick="toggleInfo('info3')">Info</span>
-
-    <div class="info-panel" id="info3">
-      72V • 5A fast charge • Built-in protections
-    </div>
+<!-- BAC 8000 CONTROLLER -->
+<div class="product">
+  <img src="https://images.unsplash.com/photo-1593941707874-ef25b8b4a92b">
+  <h2>BAC 8000 Controller</h2>
+  <p>Industry-standard high power controller.</p>
+  <p class="price">$1,099.99</p>
+  <button class="button" onclick="startCheckout('BAC 8000 Controller',1099.99)">Buy</button>
+  <span class="info-button" onclick="toggleInfo('info3')">Info</span>
+  <div class="info-panel" id="info3">
+    <strong>Specs:</strong><br>
+    • Up to 800A phase current<br>
+    • Bluetooth tuning support<br><br>
+    <strong>Compatibility:</strong><br>
+    ✔ TruMoto motors<br>
+    ✔ Sur-Ron & Talaria (with harness)
   </div>
+</div>
+
+<!-- HEAVY DUTY CHAIN KIT -->
+<div class="product">
+  <img src="https://images.unsplash.com/photo-1599940824399-b87987ceb72a">
+  <h2>Heavy-Duty Chain & Sprocket Kit</h2>
+  <p>Built for high-power electric torque.</p>
+  <p class="price">$179.99</p>
+  <button class="button" onclick="startCheckout('Chain & Sprocket Kit',179.99)">Buy</button>
+  <span class="info-button" onclick="toggleInfo('info4')">Info</span>
+  <div class="info-panel" id="info4">
+    <strong>Specs:</strong><br>
+    • Reinforced steel sprocket<br>
+    • High-tensile chain<br><br>
+    <strong>Compatibility:</strong><br>
+    ✔ Sur-Ron Light Bee<br>
+    ✔ Talaria Sting
+  </div>
+</div>
+
+<!-- UPGRADED THROTTLE -->
+<div class="product">
+  <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba">
+  <h2>Performance Throttle Upgrade</h2>
+  <p>Smooth response, zero lag.</p>
+  <p class="price">$89.99</p>
+  <button class="button" onclick="startCheckout('Performance Throttle',89.99)">Buy</button>
+  <span class="info-button" onclick="toggleInfo('info5')">Info</span>
+  <div class="info-panel" id="info5">
+    <strong>Specs:</strong><br>
+    • Hall-effect sensor<br>
+    • Adjustable sensitivity<br><br>
+    <strong>Compatibility:</strong><br>
+    ✔ Sur-Ron<br>
+    ✔ Talaria<br>
+    ✔ BAC controllers
+  </div>
+</div>
 
 </section>
 
@@ -221,46 +212,42 @@
 </div>
 
 <script>
-  let currentProduct = {};
-  let paypalRendered = false;
+let currentProduct = {};
+let paypalRendered = false;
 
-  function toggleInfo(id) {
-    document.querySelectorAll('.info-panel').forEach(panel => {
-      if (panel.id !== id) panel.style.display = 'none';
-    });
+function toggleInfo(id) {
+  document.querySelectorAll('.info-panel').forEach(p => {
+    if (p.id !== id) p.style.display = 'none';
+  });
+  const el = document.getElementById(id);
+  el.style.display = el.style.display === 'block' ? 'none' : 'block';
+}
 
-    const target = document.getElementById(id);
-    target.style.display = target.style.display === 'block' ? 'none' : 'block';
+function startCheckout(name, price) {
+  currentProduct = { name, price };
+  document.getElementById('checkout').style.display = 'block';
+  document.getElementById('checkoutTitle').innerText = name;
+  document.getElementById('checkoutPrice').innerText = price.toFixed(2);
+
+  if (!paypalRendered) {
+    paypalRendered = true;
+    paypal.Buttons({
+      createOrder: (data, actions) =>
+        actions.order.create({
+          purchase_units: [{
+            description: currentProduct.name,
+            amount: { value: currentProduct.price.toFixed(2) }
+          }]
+        }),
+      onApprove: (data, actions) =>
+        actions.order.capture().then(details =>
+          alert('Payment completed by ' + details.payer.name.given_name)
+        )
+    }).render('#paypal-button-container');
   }
 
-  function startCheckout(name, price) {
-    currentProduct = { name, price };
-
-    document.getElementById('checkout').style.display = 'block';
-    document.getElementById('checkoutTitle').innerText = name;
-    document.getElementById('checkoutPrice').innerText = price.toFixed(2);
-
-    if (!paypalRendered) {
-      paypalRendered = true;
-      paypal.Buttons({
-        createOrder: function(data, actions) {
-          return actions.order.create({
-            purchase_units: [{
-              description: currentProduct.name,
-              amount: { value: currentProduct.price.toFixed(2) }
-            }]
-          });
-        },
-        onApprove: function(data, actions) {
-          return actions.order.capture().then(function(details) {
-            alert('Payment completed by ' + details.payer.name.given_name);
-          });
-        }
-      }).render('#paypal-button-container');
-    }
-
-    window.scrollTo(0, document.body.scrollHeight);
-  }
+  window.scrollTo(0, document.body.scrollHeight);
+}
 </script>
 
 </body>
