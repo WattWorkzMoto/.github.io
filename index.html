@@ -7,49 +7,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
 
 <style>
-body {
-  margin:0;
-  background:#0b0b0b;
-  color:#fff;
-  font-family:Arial, sans-serif;
-}
-
-header {
-  background:#000;
-  padding:40px 20px;
-  text-align:center;
-}
-
-header h1 {
-  font-family:'Orbitron',sans-serif;
-  margin:0;
-  letter-spacing:2px;
-}
-
-header p {
-  color:#aaa;
-}
+body { margin:0; background:#0b0b0b; color:#fff; font-family:Arial,sans-serif; }
+header { background:#000; padding:40px 20px; text-align:center; }
+header h1 { font-family:'Orbitron',sans-serif; margin:0; letter-spacing:2px; }
+header p { color:#aaa; }
 
 .controls {
-  display:flex;
-  gap:12px;
-  justify-content:center;
-  padding:20px;
-  flex-wrap:wrap;
+  display:flex; gap:12px; justify-content:center;
+  padding:20px; flex-wrap:wrap;
 }
-
-select {
-  padding:10px 14px;
-  border-radius:6px;
-  border:none;
-}
+select { padding:10px 14px; border-radius:6px; border:none; }
 
 .grid {
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
   gap:20px;
   padding:20px;
-  max-width:1400px;
+  max-width:1500px;
   margin:auto;
 }
 
@@ -62,20 +36,9 @@ select {
   flex-direction:column;
 }
 
-.product h3 {
-  margin:0 0 6px;
-  font-size:1.05em;
-}
-
-.meta {
-  font-size:0.85em;
-  color:#aaa;
-}
-
-.price {
-  font-size:1.15em;
-  margin:6px 0;
-}
+.product h3 { margin:0 0 6px; font-size:1.05em; }
+.meta { font-size:0.85em; color:#aaa; }
+.price { font-size:1.15em; margin:6px 0; }
 
 button {
   margin-top:auto;
@@ -101,7 +64,7 @@ button {
 
 <header>
   <h1>Watt Workz Moto</h1>
-  <p>Electric Moto Performance Parts & Power Upgrades</p>
+  <p>Electric Moto Performance Parts & Upgrades</p>
 </header>
 
 <div class="controls">
@@ -116,17 +79,20 @@ button {
     <option>FactoryZ</option>
     <option>Talaria OEM</option>
     <option>Sur-Ron OEM</option>
+    <option>KO Moto</option>
+    <option>Baja Designs</option>
   </select>
 
   <select id="bikeFilter">
     <option value="">All Bikes</option>
-    <option>ETM RTR</option>
     <option>Sur-Ron Light Bee</option>
     <option>Sur-Ron Ultra Bee</option>
-    <option>Talaria Sting</option>
+    <option>Talaria Sting MX3</option>
+    <option>Talaria Sting MX4</option>
     <option>Talaria XXX</option>
-    <option>E-Ride Pro</option>
-    <option>Tuttio</option>
+    <option>ETM RTR</option>
+    <option>E-Ride Pro SS</option>
+    <option>Tuttio Soleil</option>
   </select>
 </div>
 
@@ -134,70 +100,30 @@ button {
 
 <script>
 const products = [
-{n:"EBMX X-9000 V3 Controller Kit",b:"EBMX",bike:"Sur-Ron Light Bee",p:2199,i:"High-power controller supporting 900A peak. Compatible with Sur-Ron, Talaria, E-Ride Pro."},
-{n:"EBMX XLB-60 CORE Motor",b:"EBMX",bike:"Sur-Ron Light Bee",p:1899,i:"Liquid cooled motor upgrade for Sur-Ron Light Bee and E-Ride Pro."},
-{n:"EBMX XTA-60 Motor",b:"EBMX",bike:"Talaria Sting",p:1999,i:"Direct fit motor upgrade for Talaria Sting MX3/MX4."},
-{n:"EBMX XUB-80 Motor",b:"EBMX",bike:"Sur-Ron Ultra Bee",p:2299,i:"High torque motor upgrade for Ultra Bee platforms."},
+{n:"EBMX X-9000 V3 Controller Kit",b:"EBMX",bike:"Sur-Ron Light Bee",p:2199,i:"900A peak controller. Supports Sur-Ron, Talaria, E-Ride Pro."},
+{n:"EBMX XLB-60 CORE Motor",b:"EBMX",bike:"Sur-Ron Light Bee",p:1899,i:"Liquid cooled performance motor upgrade."},
+{n:"EBMX XLB-60 RACE Motor",b:"EBMX",bike:"Sur-Ron Light Bee",p:2199,i:"Race-spec motor for high power builds."},
+{n:"EBMX XTA-60 Motor",b:"EBMX",bike:"Talaria Sting MX4",p:1999,i:"Direct-fit motor for Talaria MX platforms."},
+{n:"EBMX XUB-80 Motor",b:"EBMX",bike:"Sur-Ron Ultra Bee",p:2299,i:"High torque Ultra Bee motor upgrade."},
+{n:"EBMX SW102 Display",b:"EBMX",bike:"Sur-Ron Light Bee",p:249,i:"Color display for EBMX controllers."},
 
-{n:"Electro & Co ETM RTR Revolver Mod Motor",b:"Electro & Co",bike:"ETM RTR",p:1899,i:"High torque Revolver motor upgrade for ETM RTR."},
-{n:"Electro & Co ETM RTR TruMoto 6+7 Powertrain Kit",b:"TruMoto",bike:"ETM RTR",p:3999,i:"Complete motor, controller, and drivetrain upgrade kit."},
-{n:"Electro & Co ETM RTR 420 Chain Conversion Kit",b:"Electro & Co",bike:"ETM RTR",p:249,i:"Heavy-duty 420 chain conversion for high power builds."},
-{n:"Electro & Co ETM RTR Big Ultralight Sprocket",b:"Electro & Co",bike:"ETM RTR",p:89,i:"Lightweight aluminum sprocket for ETM RTR."},
+{n:"Electro & Co ETM RTR Revolver Mod Motor",b:"Electro & Co",bike:"ETM RTR",p:1899,i:"High torque motor for ETM RTR."},
+{n:"Electro & Co ETM RTR 420 Chain Conversion Kit",b:"Electro & Co",bike:"ETM RTR",p:249,i:"420 chain conversion for high output setups."},
+{n:"Electro & Co ETM RTR Ultralight Rear Sprocket",b:"Electro & Co",bike:"ETM RTR",p:89,i:"Lightweight aluminum sprocket."},
+{n:"Electro & Co ETM RTR Big Wheel Set 12in",b:"Electro & Co",bike:"ETM RTR",p:799,i:"12 inch wheel upgrade set."},
 
-{n:"Torp TC500 Controller",b:"Torp",bike:"Sur-Ron Light Bee",p:999,i:"Compact high performance controller for Light Bee."},
-{n:"Torp TC1000 Controller",b:"Torp",bike:"Talaria Sting",p:1299,i:"High output controller compatible with Talaria platforms."},
-{n:"Torp TM25 Motor",b:"Torp",bike:"Sur-Ron Light Bee",p:1599,i:"High efficiency motor upgrade for Sur-Ron Light Bee."},
-{n:"Torp TM40 Motor",b:"Torp",bike:"Sur-Ron Ultra Bee",p:1999,i:"Large format motor for Ultra Bee builds."},
+{n:"TruMoto EMXRON 6/7 Powertrain Kit",b:"TruMoto",bike:"ETM RTR",p:3999,i:"Complete motor and controller powertrain kit."},
+{n:"TruMoto EMXRON Motor Only",b:"TruMoto",bike:"ETM RTR",p:2199,i:"Standalone EMXRON motor."},
+{n:"TruMoto EMXRON Controller",b:"TruMoto",bike:"ETM RTR",p:1499,i:"Controller designed for EMXRON motors."},
 
-{n:"Nucular P24F Controller",b:"Nucular",bike:"Sur-Ron Light Bee",p:1499,i:"Advanced FOC controller with deep tuning options."},
-{n:"Nucular 24F Display Module",b:"Nucular",bike:"Sur-Ron Light Bee",p:199,i:"CAN display module for Nucular controllers."},
+{n:"Torp TC500 Controller",b:"Torp",bike:"Sur-Ron Light Bee",p:999,i:"Compact controller with advanced tuning."},
+{n:"Torp TC1000 Controller",b:"Torp",bike:"Talaria Sting MX3",p:1299,i:"High current controller for Talaria."},
+{n:"Torp TM25 Motor",b:"Torp",bike:"Sur-Ron Light Bee",p:1599,i:"High efficiency performance motor."},
+{n:"Torp TM40 Motor",b:"Torp",bike:"Sur-Ron Ultra Bee",p:1999,i:"Large format motor for Ultra Bee."},
 
-{n:"Warp 9 Foot Pegs for Sur-Ron",b:"Warp 9",bike:"Sur-Ron Light Bee",p:119,i:"CNC aluminum foot pegs for Sur-Ron."},
-{n:"Warp 9 Handlebar Risers",b:"Warp 9",bike:"Sur-Ron Light Bee",p:89,i:"Adjustable risers for improved riding position."},
-{n:"Warp 9 Rear Sprocket 48T",b:"Warp 9",bike:"Sur-Ron Light Bee",p:79,i:"7075 aluminum sprocket compatible with 420 chain."},
+{n:"Nucular P24F Controller",b:"Nucular",bike:"Sur-Ron Light Bee",p:1499,i:"Field oriented controller with CAN support."},
+{n:"Nucular P24F Display Module",b:"Nucular",bike:"Sur-Ron Light Bee",p:199,i:"Display module for Nucular controllers."},
 
-{n:"FactoryZ Dual Caliper Brake Kit",b:"FactoryZ",bike:"Sur-Ron Light Bee",p:499,i:"Dual caliper brake conversion kit."},
-{n:"FactoryZ Billet Swing Arm",b:"FactoryZ",bike:"Sur-Ron Light Bee",p:899,i:"Billet aluminum swing arm upgrade."},
-{n:"FactoryZ Street Legal Kit",b:"FactoryZ",bike:"Sur-Ron Light Bee",p:349,i:"Headlight, brake light, horn kit."},
-
-{n:"Talaria OEM MX4 Battery Pack",b:"Talaria OEM",bike:"Talaria Sting",p:1899,i:"Factory replacement lithium battery for MX4."},
-{n:"Talaria OEM Belt Drive Assembly",b:"Talaria OEM",bike:"Talaria Sting",p:249,i:"OEM primary belt drive assembly."},
-
-{n:"Sur-Ron OEM Light Bee Battery",b:"Sur-Ron OEM",bike:"Sur-Ron Light Bee",p:1799,i:"Factory replacement battery pack."},
-{n:"Sur-Ron OEM Controller",b:"Sur-Ron OEM",bike:"Sur-Ron Light Bee",p:599,i:"OEM replacement controller."}
-];
-
-// Duplicate real entries to exceed 100 total
-while (products.length < 110) {
-  products.push({...products[products.length % 25]});
-}
-
-const grid = document.getElementById("grid");
-const brandFilter = document.getElementById("brandFilter");
-const bikeFilter = document.getElementById("bikeFilter");
-
-function render() {
-  grid.innerHTML="";
-  products.forEach(p=>{
-    if ((brandFilter.value && p.b!==brandFilter.value) ||
-        (bikeFilter.value && p.bike!==bikeFilter.value)) return;
-
-    const d=document.createElement("div");
-    d.className="product";
-    d.innerHTML=`
-      <h3>${p.n}</h3>
-      <div class="meta">${p.b} • ${p.bike}</div>
-      <div class="price">$${p.p}</div>
-      <button onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='block'?'none':'block'">Info</button>
-      <div class="info">${p.i}</div>
-    `;
-    grid.appendChild(d);
-  });
-}
-
-brandFilter.onchange = bikeFilter.onchange = render;
-render();
-</script>
-
-</body>
-</html>
+{n:"KO Moto Pro Controller",b:"KO Moto",bike:"Sur-Ron Light Bee",p:1599,i:"High power programmable controller."},
+{n:"KO Moto Nano Controller",b:"KO Moto",bike:"Talaria Sting MX4",p:999,i:"Compact controller for Talaria builds."},
+{n:"KO Moto F-Spec Motor",b:"KO Moto",b
