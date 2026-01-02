@@ -126,4 +126,67 @@ const products = [
 
 {n:"KO Moto Pro Controller",b:"KO Moto",bike:"Sur-Ron Light Bee",p:1599,i:"High power programmable controller."},
 {n:"KO Moto Nano Controller",b:"KO Moto",bike:"Talaria Sting MX4",p:999,i:"Compact controller for Talaria builds."},
-{n:"KO Moto F-Spec Motor",b:"KO Moto",b
+{n:"KO Moto F-Spec Motor",b:"KO Moto",bike:"Sur-Ron Light Bee",p:1899,i:"High torque aftermarket motor."},
+
+{n:"Warp 9 Foot Pegs",b:"Warp 9",bike:"Sur-Ron Light Bee",p:119,i:"CNC aluminum foot pegs."},
+{n:"Warp 9 Rear Sprocket 48T",b:"Warp 9",bike:"Sur-Ron Light Bee",p:79,i:"7075 aluminum sprocket."},
+{n:"Warp 9 Handlebar Risers",b:"Warp 9",bike:"Talaria Sting MX4",p:89,i:"Adjustable risers for better ergonomics."},
+{n:"Warp 9 Wheel Spacers",b:"Warp 9",bike:"Talaria XXX",p:49,i:"Precision wheel spacers."},
+
+{n:"FactoryZ Dual Caliper Brake Kit",b:"FactoryZ",bike:"Sur-Ron Light Bee",p:499,i:"Dual caliper braking upgrade."},
+{n:"FactoryZ Billet Swing Arm",b:"FactoryZ",bike:"Sur-Ron Light Bee",p:899,i:"Billet aluminum swingarm."},
+{n:"FactoryZ Carbon Fiber Skid Plate",b:"FactoryZ",bike:"Talaria Sting MX4",p:299,i:"Carbon fiber underbody protection."},
+{n:"FactoryZ Street Legal Kit",b:"FactoryZ",bike:"Sur-Ron Light Bee",p:349,i:"Lighting and horn street kit."},
+
+{n:"Talaria OEM MX4 Battery Pack",b:"Talaria OEM",bike:"Talaria Sting MX4",p:1899,i:"OEM replacement battery."},
+{n:"Talaria OEM MX4 Controller",b:"Talaria OEM",bike:"Talaria Sting MX4",p:699,i:"OEM controller replacement."},
+{n:"Talaria OEM Primary Belt",b:"Talaria OEM",bike:"Talaria Sting MX3",p:129,i:"OEM primary belt."},
+{n:"Talaria OEM Chain Drive Assembly",b:"Talaria OEM",bike:"Talaria XXX",p:299,i:"OEM chain drive system."},
+
+{n:"Sur-Ron OEM Light Bee Battery",b:"Sur-Ron OEM",bike:"Sur-Ron Light Bee",p:1799,i:"OEM replacement battery."},
+{n:"Sur-Ron OEM Light Bee Controller",b:"Sur-Ron OEM",bike:"Sur-Ron Light Bee",p:599,i:"OEM controller."},
+{n:"Sur-Ron OEM Ultra Bee Battery",b:"Sur-Ron OEM",bike:"Sur-Ron Ultra Bee",p:2199,i:"OEM Ultra Bee battery pack."},
+{n:"Sur-Ron OEM Ultra Bee Motor",b:"Sur-Ron OEM",bike:"Sur-Ron Ultra Bee",p:1899,i:"OEM Ultra Bee motor."},
+
+{n:"Baja Designs Squadron Sport Headlight",b:"Baja Designs",bike:"Sur-Ron Light Bee",p:329,i:"High output LED headlight."},
+{n:"Baja Designs S2 Pro LED Headlight",b:"Baja Designs",bike:"Talaria Sting MX4",p:399,i:"Compact high intensity LED light."},
+{n:"Baja Designs Wiring Harness for E-Moto",b:"Baja Designs",bike:"Sur-Ron Light Bee",p:89,i:"Plug and play wiring harness."},
+
+{n:"E-Ride Pro SS OEM Battery",b:"Sur-Ron OEM",bike:"E-Ride Pro SS",p:1999,i:"OEM battery for E-Ride Pro SS."},
+{n:"E-Ride Pro SS OEM Controller",b:"Sur-Ron OEM",bike:"E-Ride Pro SS",p:699,i:"OEM controller for E-Ride Pro SS."},
+
+{n:"Tuttio Soleil OEM Battery",b:"Talaria OEM",bike:"Tuttio Soleil",p:1699,i:"OEM Tuttio Soleil battery."},
+{n:"Tuttio Soleil OEM Controller",b:"Talaria OEM",bike:"Tuttio Soleil",p:649,i:"OEM controller replacement."},
+{n:"Tuttio Soleil Rear Sprocket",b:"Warp 9",bike:"Tuttio Soleil",p:69,i:"Aftermarket sprocket upgrade."},
+{n:"Tuttio Soleil Foot Peg Kit",b:"Warp 9",bike:"Tuttio Soleil",p:109,i:"Wide foot peg upgrade."}
+];
+
+const grid = document.getElementById("grid");
+const brandFilter = document.getElementById("brandFilter");
+const bikeFilter = document.getElementById("bikeFilter");
+
+function render() {
+  grid.innerHTML="";
+  products.forEach(p=>{
+    if ((brandFilter.value && p.b!==brandFilter.value) ||
+        (bikeFilter.value && p.bike!==bikeFilter.value)) return;
+
+    const d=document.createElement("div");
+    d.className="product";
+    d.innerHTML=`
+      <h3>${p.n}</h3>
+      <div class="meta">${p.b} • ${p.bike}</div>
+      <div class="price">$${p.p}</div>
+      <button onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='block'?'none':'block'">Info</button>
+      <div class="info">${p.i}</div>
+    `;
+    grid.appendChild(d);
+  });
+}
+
+brandFilter.onchange = bikeFilter.onchange = render;
+render();
+</script>
+
+</body>
+</html>
