@@ -81,7 +81,7 @@ select {
 }
 
 button {
-  margin-top:auto;
+  margin-top:10px;
   padding:12px;
   border:none;
   border-radius:6px;
@@ -107,6 +107,7 @@ button {
   <p>High-Performance Electric Moto Parts</p>
 </header>
 
+<!-- FILTER CONTROLS -->
 <div class="controls">
   <select id="brandFilter">
     <option value="">All Brands</option>
@@ -124,63 +125,90 @@ button {
   </select>
 </div>
 
+<!-- PRODUCT GRID -->
 <div class="grid" id="grid"></div>
 
-<!-- PayPal -->
+<!-- PayPal SDK -->
 <script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&currency=USD"></script>
 
 <script>
 const products = [
-{
-  name:"EBMX X-9000 V3 Controller",
-  brand:"EBMX",
-  bike:"Sur-Ron",
-  price:2199,
-  img:"https://via.placeholder.com/600x450?text=EBMX+X9000",
-  info:"High-power controller. Up to 900A. Compatible with Sur-Ron & Talaria."
-},
-{
-  name:"TruMoto 6+7 Powertrain Kit",
-  brand:"TruMoto",
-  bike:"ETM RTR",
-  price:3999,
-  img:"https://via.placeholder.com/600x450?text=TruMoto+6+7",
-  info:"Complete motor & controller kit for ETM RTR builds."
-},
-{
-  name:"Electro & Co ETM RTR Revolver Motor",
-  brand:"Electro & Co",
-  bike:"ETM RTR",
-  price:1899,
-  img:"https://via.placeholder.com/600x450?text=Revolver+Motor",
-  info:"High torque ETM RTR motor upgrade."
-},
-{
-  name:"Nucular 24F Controller",
-  brand:"Nucular",
-  bike:"Sur-Ron",
-  price:1499,
-  img:"https://via.placeholder.com/600x450?text=Nucular+24F",
-  info:"Field-oriented controller with advanced tuning."
-}
+  {
+    name:"EBMX X-9000 V3 Controller",
+    brand:"EBMX",
+    bike:"Sur-Ron",
+    price:2199,
+    img:"https://via.placeholder.com/600x450?text=EBMX+X9000",
+    info:"High-power controller. Up to 900A. Compatible with Sur-Ron & Talaria."
+  },
+  {
+    name:"TruMoto 6+7 Powertrain Kit",
+    brand:"TruMoto",
+    bike:"ETM RTR",
+    price:3999,
+    img:"https://via.placeholder.com/600x450?text=TruMoto+6+7",
+    info:"Complete motor & controller upgrade kit for ETM RTR builds."
+  },
+  {
+    name:"Electro & Co ETM RTR Revolver Motor",
+    brand:"Electro & Co",
+    bike:"ETM RTR",
+    price:1899,
+    img:"https://via.placeholder.com/600x450?text=Revolver+Motor",
+    info:"High-torque motor upgrade for ETM RTR."
+  },
+  {
+    name:"Nucular 24F Controller",
+    brand:"Nucular",
+    bike:"Sur-Ron",
+    price:1499,
+    img:"https://via.placeholder.com/600x450?text=Nucular+24F",
+    info:"Advanced field-oriented controller with deep tuning options."
+  }
 ];
 
-// render
 const grid = document.getElementById("grid");
+const brandFilter = document.getElementById("brandFilter");
+const bikeFilter = document.getElementById("bikeFilter");
 
-function render() {
+function renderProducts() {
   grid.innerHTML = "";
-  const brand = brandFilter.value;
-  const bike = bikeFilter.value;
 
-  products
-    .filter(p => (!brand || p.brand===brand) && (!bike || p.bike===bike))
-    .forEach(p => {
-      const d = document.createElement("div");
-      d.className="product";
-      d.innerHTML=`
-        <img src="${p.img}">
-        <h3>${p.name}</h3>
-        <div class="price">$${p.price}</div>
-        <button onclick="toggle(this)">Info</button>
-        <div class="info">${p.
+  const selectedBrand = brandFilter.value;
+  const selectedBike = bikeFilter.value;
+
+  products.forEach(p => {
+    // Only hide items IF a filter is selected
+    if (
+      (selectedBrand && p.brand !== selectedBrand) ||
+      (selectedBike && p.bike !== selectedBike)
+    ) return;
+
+    const card = document.createElement("div");
+    card.className = "product";
+    card.innerHTML = `
+      <img src="${p.img}" alt="${p.name}">
+      <h3>${p.name}</h3>
+      <div class="price">$${p.price}</div>
+      <button onclick="toggleInfo(this)">Info</button>
+      <div class="info">${p.info}</div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function toggleInfo(btn) {
+  const panel = btn.nextElementSibling;
+  panel.style.display = panel.style.display === "block" ? "none" : "block";
+}
+
+// Filters only narrow results — they never hide everything
+brandFilter.addEventListener("change", renderProducts);
+bikeFilter.addEventListener("change", renderProducts);
+
+// INITIAL LOAD — SHOW EVERYTHING
+renderProducts();
+</script>
+
+</body>
+</html>
