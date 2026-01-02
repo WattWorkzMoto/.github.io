@@ -5,78 +5,104 @@
 <title>Watt Workz Moto</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
-
 <script src="https://www.paypal.com/sdk/js?client-id=ASAyrFLqSKuiYBJ8cYg0OKjMBUllPxQyu3r5q_-tcn-g5gsVl8EK4gR0PRHYwpmPv6yYcDIJmEqkbgQr&currency=USD"></script>
 
 <style>
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
   background: #000;
   color: #fff;
+  font-family: Arial, sans-serif;
 }
+
 header {
-  text-align: center;
   padding: 40px;
-  border-bottom: 1px solid #fff;
+  text-align: center;
+  border-bottom: 1px solid #333;
 }
+
 header h1 {
   font-family: 'Orbitron', sans-serif;
   font-size: 3em;
 }
-header p { color: #aaa; }
 
-.products-grid {
+header p {
+  color: #aaa;
+}
+
+.products {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-  max-width: 1400px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+  max-width: 1500px;
   margin: 40px auto;
   padding: 0 20px;
 }
 
-.product {
+.card {
   border: 1px solid #fff;
   border-radius: 14px;
-  padding: 20px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
   background: #000;
 }
-.product img {
+
+.card img {
   width: 100%;
-  border-radius: 12px;
-  margin-bottom: 10px;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 10px;
 }
+
+.card h3 {
+  margin: 10px 0 5px;
+}
+
+.brand {
+  color: #aaa;
+  font-size: 0.85em;
+}
+
 .price {
-  font-size: 1.4em;
+  font-size: 1.2em;
   margin: 10px 0;
 }
-.button, .info-button {
-  padding: 10px 16px;
+
+.actions {
+  margin-top: auto;
+}
+
+button {
+  padding: 8px 14px;
+  margin-right: 6px;
   border-radius: 6px;
+  border: none;
   font-weight: bold;
   cursor: pointer;
-  margin-right: 8px;
 }
-.button {
+
+.buy {
   background: #fff;
   color: #000;
-  border: none;
 }
-.info-button {
+
+.info {
   background: transparent;
   color: #fff;
   border: 1px solid #fff;
 }
-button:hover, .button:hover { background: #ddd; color: #000; }
+
 .info-panel {
   display: none;
-  margin-top: 15px;
-  padding: 12px;
-  background: #111;
-  border-radius: 8px;
-  font-size: 0.9em;
+  margin-top: 10px;
+  padding: 10px;
   border: 1px solid #333;
+  border-radius: 8px;
+  background: #111;
+  font-size: 0.85em;
 }
+
 .checkout {
   display: none;
   max-width: 500px;
@@ -93,110 +119,10 @@ button:hover, .button:hover { background: #ddd; color: #000; }
 
 <header>
   <h1>Watt Workz Moto</h1>
-  <p>Performance E-Moto Upgrades & Parts</p>
+  <p>Electro & Co • EBMX • Nucular • Performance Upgrades</p>
 </header>
 
-<section class="products-grid">
-
-<!-- X9000 Controller -->
-<div class="product">
-  <img src="https://cdn.shopify.com/s/files/1/0268/4177/1579/products/EBMX_X9000_Controller_1024x1024.jpg" alt="EBMX X9000 Controller">
-  <h2>EBMX X-9000 V3 Controller</h2>
-  <p class="price">$1,249.00</p>
-  <button class="button" onclick="startCheckout('EBMX X-9000 V3 Controller',1249.00)">Buy</button>
-  <span class="info-button" onclick="toggleInfo('info1')">Info</span>
-  <div class="info-panel" id="info1">
-    <strong>High-performance controller</strong><br>
-    • Up to ~50,000W peak power (varies with setup) :contentReference[oaicite:8]{index=8}<br>
-    • 3 selectable power modes<br>
-    • Bluetooth tuning & live dashboard<br><br>
-    <strong>Compatibility:</strong><br>
-    ✔ Sur-Ron Light Bee<br>
-    ✔ Talaria Sting & compatible e-moto builds
-  </div>
-</div>
-
-<!-- BAC8000 Controller -->
-<div class="product">
-  <img src="https://evfreaks.uk/cdn/shop/products/ASI-BAC8000-Upgraded-Controller.png" alt="BAC8000 Controller">
-  <h2>ASI BAC8000 Power Upgrade Kit</h2>
-  <p class="price">$1,170.49</p>
-  <button class="button" onclick="startCheckout('ASI BAC8000 Power Upgrade Kit',1170.49)">Buy</button>
-  <span class="info-button" onclick="toggleInfo('info2')">Info</span>
-  <div class="info-panel" id="info2">
-    <strong>Specs:</strong><br>
-    • Designed for high current motor systems<br>
-    • Enhanced reliability and efficiency<br><br>
-    <strong>Compatibility:</strong><br>
-    ✔ Sur-Ron Light Bee<br>
-    ✔ Talaria & other similar bikes
-  </div>
-</div>
-
-<!-- High Power Battery -->
-<div class="product">
-  <img src="https://cdn.surronshop.world/51889811849558_large.jpg" alt="SurRonshop High Power Battery">
-  <h2>SurRonshop High Power 60V/72V Battery</h2>
-  <p class="price">$1,360.00</p>
-  <button class="button" onclick="startCheckout('SurRonshop High Power 60V/72V Battery',1360.00)">Buy</button>
-  <span class="info-button" onclick="toggleInfo('info3')">Info</span>
-  <div class="info-panel" id="info3">
-    <strong>Specs:</strong><br>
-    • High capacity battery for extended range<br>
-    • Multiple voltage configurations<br><br>
-    <strong>Compatibility:</strong><br>
-    ✔ Sur-Ron LBX<br>
-    ✔ Talaria Sting & e-moto systems
-  </div>
-</div>
-
-<!-- Nucular Controller Kit -->
-<div class="product">
-  <img src="https://radmotousa.com/cdn/shop/products/nucular-controller-kit.jpg" alt="Nucular Controller Kit">
-  <h2>Nucular Controller Kit</h2>
-  <p class="price">$825.00</p>
-  <button class="button" onclick="startCheckout('Nucular Controller Kit',825.00)">Buy</button>
-  <span class="info-button" onclick="toggleInfo('info4')">Info</span>
-  <div class="info-panel" id="info4">
-    <strong>Specs:</strong><br>
-    • Cost-effective controller option<br>
-    • Reliable performance<br><br>
-    <strong>Compatibility:</strong><br>
-    ✔ Sur-Ron Light Bee
-  </div>
-</div>
-
-<!-- DC Voltage Converter -->
-<div class="product">
-  <img src="https://radmotousa.com/cdn/shop/products/dc-voltage-converter.jpg" alt="DC Voltage Converter">
-  <h2>SurRon DC Voltage Converter</h2>
-  <p class="price">$49.99</p>
-  <button class="button" onclick="startCheckout('SurRon DC Voltage Converter',49.99)">Buy</button>
-  <span class="info-button" onclick="toggleInfo('info5')">Info</span>
-  <div class="info-panel" id="info5">
-    <strong>Specs:</strong><br>
-    • Converts DC output for accessory use<br><br>
-    <strong>Compatibility:</strong><br>
-    ✔ Sur-Ron & similar e-moto systems
-  </div>
-</div>
-
-<!-- Charger Adapter -->
-<div class="product">
-  <img src="https://cdn.shopify.com/s/files/1/1870488/large.jpg" alt="Charger Adapter">
-  <h2>SUR-RON to Talaria Charger Adapter</h2>
-  <p class="price">$72.84</p>
-  <button class="button" onclick="startCheckout('Charger Adapter',72.84)">Buy</button>
-  <span class="info-button" onclick="toggleInfo('info6')">Info</span>
-  <div class="info-panel" id="info6">
-    <strong>Specs:</strong><br>
-    • Plug-and-play charger adapter<br><br>
-    <strong>Compatibility:</strong><br>
-    ✔ Sur-Ron to Talaria charging systems
-  </div>
-</div>
-
-</section>
+<div class="products" id="products"></div>
 
 <div class="checkout" id="checkout">
   <h2 id="checkoutTitle"></h2>
@@ -205,22 +131,89 @@ button:hover, .button:hover { background: #ddd; color: #000; }
 </div>
 
 <script>
-let currentProduct = {};
-let paypalRendered = false;
+const catalog = [];
+let id = 1;
 
-function toggleInfo(id) {
-  document.querySelectorAll('.info-panel').forEach(p => {
-    if (p.id !== id) p.style.display = 'none';
-  });
-  const el = document.getElementById(id);
-  el.style.display = el.style.display === 'block' ? 'none' : 'block';
+// IMAGE SETS BY CATEGORY
+const images = {
+  motor: "https://images.unsplash.com/photo-1605559424843-9c3b1efc9f9d",
+  controller: "https://images.unsplash.com/photo-1593941707874-ef25b8b4a92b",
+  battery: "https://images.unsplash.com/photo-1581092334903-9c8c4c8b10f7",
+  pegs: "https://images.unsplash.com/photo-1599940824399-b87987ceb72a",
+  bars: "https://images.unsplash.com/photo-1503376780353-7e6692767b70",
+  sprocket: "https://images.unsplash.com/photo-1595474472287-4d71bcdd2085"
+};
+
+// GENERATE 120 PRODUCTS
+const brands = ["Electro & Co", "EBMX", "Nucular"];
+const categories = [
+  { name: "Motor Upgrade", img: "motor", price: [1800, 3200] },
+  { name: "Controller", img: "controller", price: [900, 1600] },
+  { name: "Battery", img: "battery", price: [1200, 2100] },
+  { name: "Foot Pegs", img: "pegs", price: [80, 180] },
+  { name: "Handlebars", img: "bars", price: [90, 220] },
+  { name: "Sprocket", img: "sprocket", price: [60, 160] }
+];
+
+for (let b of brands) {
+  for (let c of categories) {
+    for (let i = 0; i < 7; i++) {
+      const price = Math.floor(
+        Math.random() * (c.price[1] - c.price[0]) + c.price[0]
+      );
+      catalog.push({
+        id: id++,
+        name: `${b} ${c.name} ${i + 1}`,
+        brand: b,
+        price,
+        image: images[c.img],
+        info: `
+<strong>Specs:</strong><br>
+• High-quality ${c.name.toLowerCase()}<br>
+• Designed for performance builds<br><br>
+<strong>Compatibility:</strong><br>
+✔ Sur-Ron Light Bee<br>
+✔ Talaria Sting / MX4<br>
+✔ Custom e-moto builds
+`
+      });
+    }
+  }
 }
 
+// RENDER PRODUCTS
+const container = document.getElementById("products");
+
+catalog.forEach(p => {
+  container.innerHTML += `
+  <div class="card">
+    <img src="${p.image}">
+    <h3>${p.name}</h3>
+    <div class="brand">${p.brand}</div>
+    <div class="price">$${p.price}</div>
+    <div class="actions">
+      <button class="buy" onclick="startCheckout('${p.name}', ${p.price})">Buy</button>
+      <button class="info" onclick="toggleInfo(${p.id})">Info</button>
+    </div>
+    <div class="info-panel" id="info${p.id}">
+      ${p.info}
+    </div>
+  </div>`;
+});
+
+function toggleInfo(id) {
+  const el = document.getElementById("info" + id);
+  el.style.display = el.style.display === "block" ? "none" : "block";
+}
+
+let paypalRendered = false;
+let current = {};
+
 function startCheckout(name, price) {
-  currentProduct = { name, price };
-  document.getElementById('checkout').style.display = 'block';
-  document.getElementById('checkoutTitle').innerText = name;
-  document.getElementById('checkoutPrice').innerText = price.toFixed(2);
+  current = { name, price };
+  document.getElementById("checkout").style.display = "block";
+  document.getElementById("checkoutTitle").innerText = name;
+  document.getElementById("checkoutPrice").innerText = price.toFixed(2);
 
   if (!paypalRendered) {
     paypalRendered = true;
@@ -228,16 +221,17 @@ function startCheckout(name, price) {
       createOrder: (data, actions) =>
         actions.order.create({
           purchase_units: [{
-            description: currentProduct.name,
-            amount: { value: currentProduct.price.toFixed(2) }
+            description: current.name,
+            amount: { value: current.price.toFixed(2) }
           }]
         }),
       onApprove: (data, actions) =>
-        actions.order.capture().then(details =>
-          alert('Payment completed!')
+        actions.order.capture().then(() =>
+          alert("Payment successful!")
         )
-    }).render('#paypal-button-container');
+    }).render("#paypal-button-container");
   }
+
   window.scrollTo(0, document.body.scrollHeight);
 }
 </script>
