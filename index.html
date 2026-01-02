@@ -3,88 +3,99 @@
 <head>
 <meta charset="UTF-8">
 <title>Watt Workz Moto</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
-<script src="https://www.paypal.com/sdk/js?client-id=ASAyrFLqSKuiYBJ8cYg0OKjMBUllPxQyu3r5q_-tcn-g5gsVl8EK4gR0PRHYwpmPv6yYcDIJmEqkbgQr&currency=USD"></script>
 
 <style>
 body {
   margin: 0;
+  background:#0b0b0b;
+  color:#fff;
   font-family: Arial, sans-serif;
-  background: #000;
-  color: #fff;
 }
-header {
-  padding: 40px;
-  text-align: center;
-  border-bottom: 1px solid #333;
-}
-header h1 { font-family: 'Orbitron', sans-serif; font-size: 3em; }
-header p { color: #aaa; }
 
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
-  gap: 25px;
-  max-width: 1400px;
-  margin: 40px auto;
-  padding: 0 20px;
+header {
+  padding:40px 20px;
+  text-align:center;
+  background:#000;
+}
+
+header h1 {
+  font-family:'Orbitron',sans-serif;
+  margin:0;
+  letter-spacing:2px;
+}
+
+header p {
+  color:#aaa;
+}
+
+.controls {
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  padding:20px;
+  flex-wrap:wrap;
+}
+
+select {
+  padding:10px;
+  border-radius:6px;
+  border:none;
+}
+
+.grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+  gap:20px;
+  padding:20px;
+  max-width:1300px;
+  margin:auto;
 }
 
 .product {
-  border: 1px solid #fff;
-  border-radius: 14px;
-  padding: 18px;
-  background: #000;
+  background:#111;
+  border:1px solid #fff;
+  border-radius:14px;
+  padding:15px;
+  display:flex;
+  flex-direction:column;
 }
+
 .product img {
-  width: 100%;
-  border-radius: 10px;
-  margin-bottom: 12px;
+  width:100%;
+  aspect-ratio:4/3;
+  object-fit:contain;
+  background:#000;
+  border-radius:10px;
 }
-.product h2 { margin: 0 0 8px; }
-.product .price {
-  font-size: 1.4em;
-  margin: 8px 0 12px;
+
+.product h3 {
+  margin:10px 0 5px;
 }
+
+.price {
+  font-size:1.2em;
+  margin:5px 0;
+}
+
 button {
-  padding: 10px 16px;
-  border-radius: 6px;
-  font-weight: bold;
-  cursor: pointer;
-}
-.button-buy {
-  background: #fff;
-  color: #000;
-  border: none;
-}
-.button-info {
-  background: transparent;
-  color: #fff;
-  border: 1px solid #fff;
-  margin-left: 8px;
-}
-.button-buy:hover { background: #ddd; color: #000; }
-.button-info:hover { background: #fff; color: #000; }
-
-.info-panel {
-  display: none;
-  margin-top: 10px;
-  padding: 12px;
-  border-radius: 8px;
-  background: #111;
-  border: 1px solid #333;
-  font-size: 0.9em;
+  margin-top:auto;
+  padding:12px;
+  border:none;
+  border-radius:6px;
+  background:#fff;
+  color:#000;
+  font-weight:bold;
+  cursor:pointer;
 }
 
-.checkout {
-  display: none;
-  max-width: 500px;
-  margin: 40px auto;
-  padding: 22px;
-  border: 1px solid #fff;
-  border-radius: 12px;
-  text-align: center;
+.info {
+  display:none;
+  font-size:0.9em;
+  color:#ccc;
+  margin-top:8px;
 }
 </style>
 </head>
@@ -93,155 +104,83 @@ button {
 
 <header>
   <h1>Watt Workz Moto</h1>
-  <p>Performance E-Moto Upgrades & Parts</p>
+  <p>High-Performance Electric Moto Parts</p>
 </header>
 
-<section class="products-grid">
+<div class="controls">
+  <select id="brandFilter">
+    <option value="">All Brands</option>
+    <option>EBMX</option>
+    <option>Electro & Co</option>
+    <option>Nucular</option>
+    <option>TruMoto</option>
+  </select>
 
-<!-- EBMX X-9000 V3 Controller -->
-<div class="product">
-  <img src="https://darwinev.com/cdn/shop/products/ebmx-x-9000-controller-upgrade-sur-ron-talaria_1024x.jpg" alt="EBMX X-9000 V3 Controller">
-  <h2>EBMX X-9000 V3 Controller Kit</h2>
-  <p class="price">$1,164.00</p>
-  <button class="button-buy" onclick="startCheckout('EBMX X-9000 V3 Controller Kit',1164.00)">Buy</button>
-  <button class="button-info" onclick="toggleInfo('info1')">Info</button>
-  <div class="info-panel" id="info1">
-    <strong>Power & Specs:</strong><br>
-    • Continuous 50kW power output<br>
-    • 1000A continuous / 1600A burst phase current<br>
-    • Field Oriented Control (FOC), VESC firmware<br>
-    • Fully sealed IP67 housing<br><br>
-    <strong>Compatibility:</strong><br>
-    ✔ Sur-Ron Light Bee, Ultra Bee<br>
-    ✔ Talaria MX3/MX4/MX5, XXX<br>
-    ✔ E-Ride Pro SS 2.0 / 3.0 / SR<br>
-    ✔ ReRode R1 and QS138 motors<br>:contentReference[oaicite:1]{index=1}
-  </div>
+  <select id="bikeFilter">
+    <option value="">All Bikes</option>
+    <option>ETM RTR</option>
+    <option>Sur-Ron</option>
+    <option>Talaria</option>
+  </select>
 </div>
 
-<!-- EBMX XLB-60 Motor -->
-<div class="product">
-  <img src="https://darwinev.com/cdn/shop/products/ebmx-xlb-60-core-motor_1024x.jpg" alt="EBMX XLB-60 Motor">
-  <h2>EBMX XLB-60 Core Motor</h2>
-  <p class="price">$1,145.00</p>
-  <button class="button-buy" onclick="startCheckout('EBMX XLB-60 Core Motor',1145.00)">Buy</button>
-  <button class="button-info" onclick="toggleInfo('info2')">Info</button>
-  <div class="info-panel" id="info2">
-    <strong>Specs:</strong><br>
-    • Mid-power motor optimized for trail & urban use<br>
-    • High torque & thermal tolerance<br><br>
-    <strong>Compatibility:</strong><br>
-    ✔ Sur-Ron LBX & Ultra Bee<br>
-    ✔ E-Ride Pro SS / SR<br>
-    ✔ Talaria platforms where applicable<br>:contentReference[oaicite:2]{index=2}
-  </div>
-</div>
+<div class="grid" id="grid"></div>
 
-<!-- EBMX XTA-60 Motor -->
-<div class="product">
-  <img src="https://darwinev.com/cdn/shop/products/ebmx-xta-60-motor-talaria_1024x.jpg" alt="EBMX XTA-60 Motor">
-  <h2>EBMX XTA-60 Motor</h2>
-  <p class="price">$1,149.00</p>
-  <button class="button-buy" onclick="startCheckout('EBMX XTA-60 Motor',1149.00)">Buy</button>
-  <button class="button-info" onclick="toggleInfo('info3')">Info</button>
-  <div class="info-panel" id="info3">
-    <strong>Specs:</strong><br>
-    • 60mm high-efficiency motor<br>
-    • Balanced power & battery life<br><br>
-    <strong>Compatibility:</strong><br>
-    ✔ Talaria Sting MX3/MX4/MX5<br>
-    ✔ Sur-Ron & other compatible e-moto builds<br>:contentReference[oaicite:3]{index=3}
-  </div>
-</div>
-
-<!-- EBMX XUB-80 Motor -->
-<div class="product">
-  <img src="https://darwinev.com/cdn/shop/products/ebmx-xub-80-motor-ultra-bee_1024x.jpg" alt="EBMX XUB-80 Motor">
-  <h2>EBMX XUB-80 Motor</h2>
-  <p class="price">$1,345.00</p>
-  <button class="button-buy" onclick="startCheckout('EBMX XUB-80 Motor',1345.00)">Buy</button>
-  <button class="button-info" onclick="toggleInfo('info4')">Info</button>
-  <div class="info-panel" id="info4">
-    <strong>Specs:</strong><br>
-    • High-output motor for aggressive riders<br><br>
-    <strong>Compatibility:</strong><br>
-    ✔ Sur-Ron Ultra Bee<br>
-    ✔ Talaria compatible custom builds<br>:contentReference[oaicite:4]{index=4}
-  </div>
-</div>
-
-<!-- EBMX SW102 Display -->
-<div class="product">
-  <img src="https://darwinev.com/cdn/shop/products/ebmx-sw102-display_1024x.jpg" alt="EBMX SW102 Display">
-  <h2>EBMX SW102 Display</h2>
-  <p class="price">$85.00</p>
-  <button class="button-buy" onclick="startCheckout('EBMX SW102 Display',85.00)">Buy</button>
-  <button class="button-info" onclick="toggleInfo('info5')">Info</button>
-  <div class="info-panel" id="info5">
-    <strong>Specs:</strong><br>
-    • Graphical display for controller info<br>
-    • Compatible with X-9000 controller kits<br><br>
-    <strong>Compatibility:</strong><br>
-    ✔ Works with EBMX X-9000 controllers<br>:contentReference[oaicite:5]{index=5}
-  </div>
-</div>
-
-<!-- EBMX Thumb Throttle -->
-<div class="product">
-  <img src="https://darwinev.com/cdn/shop/products/ebmx-thumb-throttle_1024x.jpg" alt="EBMX Thumb Throttle">
-  <h2>EBMX Thumb Throttle</h2>
-  <p class="price">$40.00</p>
-  <button class="button-buy" onclick="startCheckout('EBMX Thumb Throttle',40.00)">Buy</button>
-  <button class="button-info" onclick="toggleInfo('info6')">Info</button>
-  <div class="info-panel" id="info6">
-    <strong>Specs:</strong><br>
-    • High-response thumb throttle<br><br>
-    <strong>Compatibility:</strong><br>
-    ✔ EBMX controller systems<br>:contentReference[oaicite:6]{index=6}
-  </div>
-</div>
-
-</section>
-
-<div class="checkout" id="checkout">
-  <h2 id="checkoutTitle"></h2>
-  <p>Total: $<span id="checkoutPrice"></span></p>
-  <div id="paypal-button-container"></div>
-</div>
+<!-- PayPal -->
+<script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&currency=USD"></script>
 
 <script>
-let currentProduct = {};
-let paypalRendered = false;
-
-function toggleInfo(id) {
-  const panel = document.getElementById(id);
-  panel.style.display = panel.style.display === "block" ? "none" : "block";
+const products = [
+{
+  name:"EBMX X-9000 V3 Controller",
+  brand:"EBMX",
+  bike:"Sur-Ron",
+  price:2199,
+  img:"https://via.placeholder.com/600x450?text=EBMX+X9000",
+  info:"High-power controller. Up to 900A. Compatible with Sur-Ron & Talaria."
+},
+{
+  name:"TruMoto 6+7 Powertrain Kit",
+  brand:"TruMoto",
+  bike:"ETM RTR",
+  price:3999,
+  img:"https://via.placeholder.com/600x450?text=TruMoto+6+7",
+  info:"Complete motor & controller kit for ETM RTR builds."
+},
+{
+  name:"Electro & Co ETM RTR Revolver Motor",
+  brand:"Electro & Co",
+  bike:"ETM RTR",
+  price:1899,
+  img:"https://via.placeholder.com/600x450?text=Revolver+Motor",
+  info:"High torque ETM RTR motor upgrade."
+},
+{
+  name:"Nucular 24F Controller",
+  brand:"Nucular",
+  bike:"Sur-Ron",
+  price:1499,
+  img:"https://via.placeholder.com/600x450?text=Nucular+24F",
+  info:"Field-oriented controller with advanced tuning."
 }
+];
 
-function startCheckout(name, price) {
-  currentProduct = { name, price };
-  document.getElementById("checkout").style.display = "block";
-  document.getElementById("checkoutTitle").innerText = name;
-  document.getElementById("checkoutPrice").innerText = price.toFixed(2);
+// render
+const grid = document.getElementById("grid");
 
-  if (!paypalRendered) {
-    paypalRendered = true;
-    paypal.Buttons({
-      createOrder: (data, actions) =>
-        actions.order.create({
-          purchase_units: [{
-            description: currentProduct.name,
-            amount: { value: currentProduct.price.toFixed(2) }
-          }]
-        }),
-      onApprove: (data, actions) =>
-        actions.order.capture().then(() =>
-          alert("Payment completed!")
-        )
-    }).render("#paypal-button-container");
-  }
-}
-</script>
+function render() {
+  grid.innerHTML = "";
+  const brand = brandFilter.value;
+  const bike = bikeFilter.value;
 
-</body>
-</html>
+  products
+    .filter(p => (!brand || p.brand===brand) && (!bike || p.bike===bike))
+    .forEach(p => {
+      const d = document.createElement("div");
+      d.className="product";
+      d.innerHTML=`
+        <img src="${p.img}">
+        <h3>${p.name}</h3>
+        <div class="price">$${p.price}</div>
+        <button onclick="toggle(this)">Info</button>
+        <div class="info">${p.
