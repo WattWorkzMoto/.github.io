@@ -3,68 +3,87 @@
 <head>
   <meta charset="UTF-8">
   <title>Watt Workz Moto</title>
-  <!-- Google Fonts for aggressive look -->
+  <!-- Aggressive modern font -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #0d0d0d;
-      color: #fff;
+      background: #121212;
+      color: #e0e0e0;
     }
+
+    /* Header */
     header {
-      background: #111;
+      background: linear-gradient(90deg, #0f0f0f, #1a1a1a);
       padding: 40px;
       text-align: center;
     }
+
     header h1 {
       font-family: 'Orbitron', sans-serif;
-      font-size: 3em;
-      color: #ff0000;
+      font-size: 3.2em;
+      color: #00ffff; /* cyan for style */
       margin: 0;
       letter-spacing: 2px;
       text-shadow: 2px 2px #000;
     }
+
     header p {
-      color: #ccc;
+      color: #cccccc;
       font-size: 1.2em;
-      margin-top: 5px;
+      margin-top: 8px;
     }
+
+    /* Section and products */
     section {
       padding: 30px;
       max-width: 900px;
       margin: auto;
     }
+
     .product {
-      border: 2px solid #333;
+      border: 1px solid #333;
       padding: 20px;
       margin-bottom: 25px;
       border-radius: 8px;
-      background: #1a1a1a;
+      background: #1e1e1e;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
+
+    .product:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,255,255,0.2);
+    }
+
     .product h2 {
       margin-top: 0;
-      color: #00ffcc;
+      color: #00ffff; /* cyan accent */
     }
+
     .price {
       font-size: 1.5em;
-      color: #ffcc00;
+      color: #ffcc00; /* gold accent for price */
       margin: 10px 0;
     }
+
     a.button {
       display: inline-block;
-      background: #ff0000;
-      color: #fff;
+      background: #00ffff;
+      color: #121212;
       padding: 12px 18px;
       text-decoration: none;
       border-radius: 5px;
       font-weight: bold;
       transition: 0.3s;
-      margin-right: 10px;
+      margin-top: 5px;
     }
+
     a.button:hover {
-      background: #ff4d4d;
+      background: #00b3b3;
+      color: #fff;
     }
+
   </style>
 </head>
 <body>
